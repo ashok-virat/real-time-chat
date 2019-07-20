@@ -1,0 +1,36 @@
+<div class="container">
+ 
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <p class="display-4" style="text-align:center">Cool</p>
+            
+           <button class="btn btn-primary btn-sm"  style="float:right" [routerLink]="['/sign-up']">Signup</button>
+          </div>
+          </div>
+    </div>
+    <div class="container">
+  <div class="row">
+  <form #createBlog="ngForm" (keydown)="signin($event)">
+
+
+    <h2 class="form-signin-heading">Please sign in</h2>
+
+    <label for="inputEmail" class="sr-only">Email address</label>
+
+    <input type="email" id="inputEmail" class="form-control" name="email" [(ngModel)]="email" #emailid="ngModel" placeholder="Email address" required autofocus>
+    <br>
+    <div [hidden]="emailid.valid || emailid.pristine" class="alert alert-danger">please enter your email</div>
+    <br>
+
+    <label for="inputPassword" class="sr-only">Password</label>
+
+    <input type="password" id="inputPassword" class="form-control" name="password" [(ngModel)]="password" #passwordd="ngModel" placeholder="Password" required>
+    <br>
+    <div [hidden]="passwordd.valid || passwordd.pristine" class="alert alert-danger">please enter your password</div>
+    <br>
+
+    <button class="btn btn-lg btn-primary btn-sm" type="button"  [disabled]="createBlog.form.invalid" (click)="signinFunction()">Sign in</button>
+</form>
+  </div>
+
+</div>
