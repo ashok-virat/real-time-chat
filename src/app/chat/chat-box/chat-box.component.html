@@ -29,12 +29,12 @@
     </div>
     
 <hr>
-    <div class="col-8 col-sm-12 col-md-12 chat">
-          <div class="userPresence" *ngIf="receiverId !=id" >
-      <div class="chat-header clearfix mobileMenu" *ngIf="receiverName">
+    <div class="col-md-12 chat">
+          <div class="userPresence"  >
+      <div class="chat-header clearfix mobileMenu">
         <app-first-char [userName]="receiverName" [userBg]="'blue'" [userColor]="'white'"></app-first-char>
 
-        <div class="chat-about" *ngIf="receiverId !=id">
+        <div class="chat-about" >
           <div class="chat-with">Chat with {{receiverName}}</div>
         </div>
       </div>
@@ -73,7 +73,7 @@
         Click on user for start a chat!!!
       </div>
       <!-- end chat-history -->
-   <div *ngIf="receiverId !=id">
+   <div >
       <div class="chat-message clearfix p-2" *ngIf="receiverName">
         <textarea name="message-to-send" id="message-to-send" (keydown)="sendMessageUsingKeypress($event)" [(ngModel)]="messageText"
           placeholder="Type your message" rows="3"></textarea>

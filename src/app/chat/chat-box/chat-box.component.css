@@ -336,24 +336,28 @@
   }
   @media only screen and (max-width:575px) {
     .chat .chat-history {
-      height:50vh;
+      height:70vh;
+      width:fit-content;
     }
 
   }
   @media only screen and (min-width:576px) and (max-width:768px) {
     .chat .chat-history {
       height:50vh;
+
     }
   }
   @media only screen and (min-width:769px) and (max-width:992px) {
     .chat .chat-history {
       height:65vh;
+   
     }
     
   }
   @media only screen and (min-width:993px) and (max-width:1200px) {
     .chat .chat-history {
       height:50vh;
+  
     }
   }
 
