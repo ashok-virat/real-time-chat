@@ -35,6 +35,7 @@ public pageValue=0;
 public loadingPreviousChat;
 public received:any;
 public userid:any;
+public id;
 
 
   constructor(public socketservice:SocketServiceService,public appservice:AppServiceService,public router:Router,private toastr: ToastrService) {
@@ -56,7 +57,7 @@ public userid:any;
     
     
   }
-  public sendingmessageusingkerpress=(event:any)=>{
+  public sendMessageUsingKeypress=(event:any)=>{
     if(event.keyCode===13){
       this.sendMessage();
     }
@@ -82,11 +83,16 @@ public userid:any;
           console.log(userList)
           this.userList=[];
           for (let x in userList){
-          let temp={'userId':x,'name':userList[x],'unread':0,'chatting':false}
+          let temp={'userId':x,'name':userList[x],'unread':0,'chatting':false};
+          console.log(temp)
           this.userList.push(temp);
         
           }
-          console.log(this.userList)
+          for(let x of this.userList){
+            this.id=x.userId;
+            console.log(this.id)
+          
+          }
           this.getuserListofunseenchats();  
         }
         
