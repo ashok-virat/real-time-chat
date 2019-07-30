@@ -26,6 +26,7 @@ private _name:string='';
    ngOnChanges(changes:SimpleChanges){
        let userName=changes.userName;
       this._name=userName.currentValue;
+      
       this.previousname=userName.previousValue;
       this.firstChar=this._name[0]
      

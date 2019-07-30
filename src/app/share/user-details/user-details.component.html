@@ -1,4 +1,4 @@
-<div class="crop" [style.color]="userColor ? userColor :'white'" [style.background]="userBg ? userBg :'blue'">
+<div class="crop" [style.color]="userColor ? userColor :'white'" [style.background]="userBg ? userBg :'green'">
   {{firstChar}}
 </div>
 <div class="about">
@@ -6,7 +6,9 @@
     <i *ngIf="messageRead" class="fa fa-circle warning"></i>
   </div>
   <div class="status">
-    <i class="fa fa-circle" [ngClass]="userStatus"></i>{{userStatus}}
+    <i class="fa fa-circle" [ngClass]="userStatus">{{userStatus}} </i>
+    <i class="fa fa-circle">{{messageRead}} </i>
   </div>
+  
 </div>
 

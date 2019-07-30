@@ -1,6 +1,8 @@
-
+.container-fluid{
+  background:linear-gradient(to top,white,#444753);
+  height: auto;
+}
 .online{
-
   height: 10px;
   width: 10px;
   background-color:green;

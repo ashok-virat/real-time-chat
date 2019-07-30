@@ -36,3 +36,7 @@
     margin:10px;
     float:right;
 }
+.container-fluid{
+    background:linear-gradient(to top,red,white);
+    height: auto;
+}

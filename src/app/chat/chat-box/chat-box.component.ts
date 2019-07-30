@@ -36,26 +36,34 @@ public loadingPreviousChat;
 public received:any;
 public userid:any;
 public id;
+  missednames: string;
+  missedchats: any;
+  chats: any;
+  unreadid: string;
+  unreadmsg: any;
+  msg: any;
 
 
   constructor(public socketservice:SocketServiceService,public appservice:AppServiceService,public router:Router,private toastr: ToastrService) {
     this.receiverId=Cookie.get('receiverId');
     this.receiverName=Cookie.get('receiverName');
+
   
    }
 
   ngOnInit() {
     this.authToken=Cookie.get('authToken');
-   
+  
     this.userInfo=this.appservice.getUserInfoFromLocalstorage();
-    console.log(this.userInfo)
+    
     this.received=this.userInfo.firstName;
-    console.log(this.userInfo.userId)
+   
     
     this.verifyuserconfirmation();
     this.getMessageFromUser();
-    
-    
+    this.getuserListofunseenchats();
+  
+   
   }
   public sendMessageUsingKeypress=(event:any)=>{
     if(event.keyCode===13){
@@ -73,6 +81,7 @@ public id;
         this.disconnectedSocket=false;
         this.socketservice.setUser(this.authToken)
         this.getonlineuserlist()
+        
       }
     )
   }
@@ -80,17 +89,24 @@ public id;
       this.socketservice.onlineUserList().subscribe(
         (userList)=>{
          
-          console.log(userList)
+         
           this.userList=[];
           for (let x in userList){
-          let temp={'userId':x,'name':userList[x],'unread':0,'chatting':false};
-          console.log(temp)
-          this.userList.push(temp);
+           
+                 let temp={'userId':x,'name':userList[x],'unread':'','chatting':false};
+               
+                 this.userList.push(temp);
+      
+            
+            
+      
         
           }
+          
+          
           for(let x of this.userList){
             this.id=x.userId;
-            console.log(this.id)
+           
           
           }
           this.getuserListofunseenchats();  
@@ -109,7 +125,7 @@ public id;
         message:this.messageText,
         createdOn:new Date()
       }
-      console.log(chatMsgObject)
+      
       this.socketservice.sendChatMessage(chatMsgObject)
       this.pushToChatWindow(chatMsgObject)
     }
@@ -126,15 +142,14 @@ public id;
     (this.receiverId==data.senderId)?this.messageList.push(data):"";
       this.toastr.success(`${data.senderName} says :${data.message}`);
       this.scrollToChatTop=false;
-      console.log(data)
-      console.log(this.messageList)
+      
     })
     
   }
 
 
 public userSelectedToChat(id,name){
-  console.log(this.messageList)
+ 
 
     this.userList.map((user)=>{
       if(user.userId==id){
@@ -172,7 +187,7 @@ public getpreviousChatWithUser=()=>{
       if(apiResponse.status==200){
         this.messageList=apiResponse.data.concat(previousData)
     
-        console.log(this.messageList)
+        
       } else{
         this.messageList=previousData;
         this.toastr.warning("No message available")
@@ -195,17 +210,16 @@ public loadEarlierPageOfChat() {
 public getuserListofunseenchats(){
   this.socketservice.getunseenchat(this.userInfo.userId,this.authToken).subscribe(
     apiResponse=>{
-      console.log(apiResponse)
+     
      this.unseenchat=apiResponse.data;
-   for (let y of this.unseenchat){
-           this.name=y.firstName+" "+y.lastName;
-           this.userid=y.userId;
-           console.log(this.userid)
+   for (let y of this.unseenchat){  
+            this.userid=y.userId;
+         
    }
      for(let x of this.userList){
-       console.log(x.userId)
+      
        this.chat=x.userId;
-       console.log(this.chat)
+       
      }
     },
     err=>{
@@ -217,7 +231,7 @@ public logout(){
   
   this.appservice.logout(this.userInfo.userId,this.authToken).subscribe(
     apiResponse=>{
-      console.log(apiResponse)
+     
       if(apiResponse.status==200){
         this.toastr.success("logout successfully")
         Cookie.delete('authToken')
@@ -237,7 +251,9 @@ public logout(){
   )
 }
 public showerthename=(name:string)=>{
+
   this.toastr.success("you are chatting with"+" "+name)
 }
+
 
 }

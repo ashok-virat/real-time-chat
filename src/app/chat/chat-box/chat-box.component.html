@@ -1,3 +1,5 @@
+<div class="container-fluid">
+
 <div class="container">
   <div class="row">
 
@@ -19,20 +21,35 @@
         <li class="clearfix cursorPointer" [ngClass]="{'activeChat': user.chatting == true}"
           *ngFor="let user of userList" (click)="userSelectedToChat(user.userId, user.name)">
           <div class="userPresence" *ngIf="user.userId != userInfo.userId"  >
-            <app-user-details [userFirstName]="user.name" [userLastName]="''" [userStatus]="'online'" [messageRead]="user.unread"></app-user-details>
+            <app-user-details  [userFirstName]="user.name" [userLastName]="''" [userStatus]="'online'" [messageRead]="user.unread"  [userBg]="'blue'"></app-user-details>
+            
+            
           </div>
         </li>
-       
-      </ul>
-
+        </ul>
+        <ul>
+        <li class="p-2 typeOfChats">
+          Missed chats:
+        </li>
+          <ng-container >
+                <li class="clearfix" *ngFor="let user of unseenchat">
+          <div class="userPresence" *ngIf="user.userId !== chat">
+            <app-user-details [userFirstName]="user.firstName" [userLastName]="user.lastName" [userStatus]="'offline'" [messageRead]="user.unread"  [userBg]="'red'"></app-user-details>
+          
+          
+          </div>
+        </li>
+        </ng-container>
+      
+</ul>
 
     </div>
     
 <hr>
     <div class="col-md-12 chat">
-          <div class="userPresence"  >
+          <div class="userPresence" >
       <div class="chat-header clearfix mobileMenu">
-        <app-first-char [userName]="receiverName" [userBg]="'blue'" [userColor]="'white'"></app-first-char>
+        <app-first-char [userName]="receiverName" (notify)='showerthename($event)'[userBg]="'green'" [userColor]="'white'"></app-first-char>
 
         <div class="chat-about" >
           <div class="chat-with">Chat with {{receiverName}}</div>
@@ -91,5 +108,4 @@
 </div>
 <!-- end container -->
 
-
-
+</div>

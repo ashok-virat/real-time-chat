@@ -13,7 +13,7 @@ export class ChatRouteGuardService implements CanActivate{
     
  constructor(private router:Router){}
  canActivate(route:ActivatedRouteSnapshot):boolean {
-     console.log("in guard servise")
+    
      if(Cookie.get('authToken')===undefined || Cookie.get('authToken')==="" || Cookie.get('authToken')===null) {
         this.router.navigate(['/login']);
        

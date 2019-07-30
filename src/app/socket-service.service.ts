@@ -19,8 +19,7 @@ private socket;
     //connection is being created 
     //that handshake
        this.socket=io(this.baseUrl);
-       console.log(this.baseUrl)
-       console.log("socket is called")
+       
   }
   public verifyUser:any=()=>{
       let ak=Observable.create((observer)=>
@@ -42,7 +41,7 @@ private socket;
             observer.next(userList)
           })// end socket
         })//end observable
-        console.log(ak)
+        
         return ak;
       }//end onlineuserlist
       public disconnectedSocket=()=>{
@@ -79,10 +78,7 @@ private socket;
    this.socket.emit("mark-chat-as-seen",userDeatils)
  }
  public getChat(senderId,receiverId,skip):Observable<any>{
-   let currenturl=this.http.get(`${this.baseUrl}/api/v1/chat/get/for/user?senderId=${senderId}&receiverId=${receiverId}&skip=${skip}&authToken=${Cookie.get('authToken')}`).pipe(
-     tap(data=>{console.log(data)},
-     err=>{console.log(this.handleError)})
-   )
+   let currenturl=this.http.get(`${this.baseUrl}/api/v1/chat/get/for/user?senderId=${senderId}&receiverId=${receiverId}&skip=${skip}&authToken=${Cookie.get('authToken')}`)
  
     return currenturl;
   }
@@ -96,5 +92,9 @@ private socket;
  public missingchats=(senderId,receiverId,authtoken)=>{
    let vk=this.http.get(`${this.baseUrl}/api/v1/chat/count/unseen?userId=${senderId}&senderId=${receiverId}&authToken=${authtoken}`)
    return vk;
+ }
+ public getunreadchat=(userId,senderId,authtoken)=>{
+   let msgcount=this.http.get(`${this.baseUrl}/api/v1/chat/count/unseen?userId=${userId}&senderId=${senderId}&authToken=${authtoken}`);
+   return msgcount;
  }
 }
