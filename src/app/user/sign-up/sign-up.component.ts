@@ -54,7 +54,7 @@ public apiKey:any;
           password:this.password,
           apiKey:'YmI0YTRmYzNmZTE5OWUwNmZhN2JhNWMzNDE4MmI2MDM1MTA2NWVjMGYyNjQyYzlmNDRhNzNjZmQ2YTdmOGEwYjVjODJlZTJlMTllZDFlNTQ0YTA1NjRjM2ZiNTg3OTE4OGZkMDdiZmQ5M2FkMzliOWNmZmVkYTg1MzhjZDZkMDUwYzQ4'
         }
-      console.log(data)
+      
       this.service. signupFunction(data).subscribe(
         (apiResponse)=>{
          

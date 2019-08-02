@@ -3,13 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
+    "deploy":"gh-pages -d dist",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ng build --aot --prod"
   },
+  "homepage":"https://ashok-virat.github.io/real-time-chat",
   "private": true,
   "dependencies": {
     "@angular/animations": "^7.2.15",
@@ -23,6 +24,7 @@
     "bootstrap": "^3.4.1",
     "core-js": "^2.5.4",
     "express": "^4.17.1",
+    "gh-pages": "^2.1.0",
     "jquery": "^3.4.1",
     "ng2-cookies": "^1.0.12",
     "ngx-socket-io": "^2.1.1",

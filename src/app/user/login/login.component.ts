@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.service.signInFunction(data).subscribe(
       (apiResponse)=>{
         if(apiResponse.status==200) {
-          console.log(apiResponse.userDeatils);
+        
           this.toastr.success("signin successful")
           Cookie.set('authToken',apiResponse.data.authToken);
           Cookie.set('receiverId',apiResponse.data.userDetails.userId);
