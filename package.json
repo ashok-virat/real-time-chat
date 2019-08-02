@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "postinstall": "ng build --aot --prod"
   },
-  "homepage":"https://ashok-virat.github.io/real-time-chat",
+  "homepage":"https://ashok-virat.github.io/real-time",
   "private": true,
   "dependencies": {
     "@angular/animations": "^7.2.15",
