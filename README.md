@@ -1,7 +1,3 @@
-# Site Link
-
-https://chat-appp2019.herokuapp.com/login
-
 # ChatApplication
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
